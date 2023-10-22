@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            max-width: 300px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 20px;
+            outline:none;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .button {
+            padding: 15px;
+            font-size: 20px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #e0e0e0;
+            grid-row: span 1;
+            grid-column: span 1;
+        }
+
+        .button.empty {
+            visibility: hidden;
+        }
+
+        .button:hover {
+            background-color: #d0d0d0;
+        }
+
+        .button.operator {
+            background-color: gray;
+            color: #fff;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            grid-column: span 4;
+        }
+        .res{
+         position: relative ;
+        }
+        .res button{
+         position: absolute;
+         right: 0rem;
+         padding: 13px 20px;
+         color:white;
+         border-radius: 0;
+         background-color: rgb(30, 200, 223);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="res">
+         <input type="text" id="result" readonly>
+         <button class="button" onclick="clearResult()">AC</button>
+        </div>
+        <div class="button-container">         
+         <button class="button" onclick="appendToResult('9')">9</button>         
+         <button class="button" onclick="appendToResult('8')">8</button>
+         <button class="button" onclick="appendToResult('7')">7</button>
+         <button class="button operator" onclick="appendToResult('+')">+</button>
+         <button class="button" onclick="appendToResult('4')">4</button>
+         <button class="button" onclick="appendToResult('5')">5</button>
+         <button class="button" onclick="appendToResult('6')">6</button> 
+         <button class="button operator" onclick="appendToResult('-')">-</button>       
+         <button class="button" onclick="appendToResult('1')">1</button>
+         <button class="button" onclick="appendToResult('2')">2</button>
+         <button class="button" onclick="appendToResult('3')">3</button>
+         <button class="button operator" onclick="appendToResult('*')">*</button>
+         <button class="button" onclick="appendToResult('.')">.</button>
+         <button class="button" onclick="appendToResult('0')">0</button>            
+         <button class="button operator" onclick="calculateResult()">=</button>
+         <button class="button operator" onclick="appendToResult('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToResult(value) {
+            document.getElementById("result").value += value;
+        }
+
+        function clearResult() {
+            document.getElementById("result").value = "";
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById("result").value = eval(document.getElementById("result").value);
+            } catch (error) {
+                document.getElementById("result").value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
